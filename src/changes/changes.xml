@@ -1,0 +1,62 @@
+<document xmlns="http://maven.apache.org/changes/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd">
+    <properties>
+        <title>Changes testlink-java-api</title>
+        <author email="brunodepaulak AT yahoo DOT com DOT br">Bruno P. Kinoshita</author>
+    </properties>
+    <body>
+        <release version="1.9.6-1" date="2013-04-06" description="1.9.6-1 release">
+            <action dev="kinow" type="update" issue="15">
+                Fixed parameter for filtering by execution type.
+            </action>
+        </release>
+        <release version="1.9.6-0" date="2013-04-04" description="1.9.6-0 release">
+            <action dev="kinow" type="update" issue="12">
+                Fixed ClassCastException due to change in TestLink code, in 
+                method getTestProjectByName.
+            </action>
+            <action dev="kinow" type="add" issue="14">
+                Added new methods getProjectPlatforms, removePlatformFromTestPlan 
+                and addPlatformToTestPlan that were included in TestLink 1.9.6.
+            </action>
+        </release>
+        <release version="1.9.5-0" date="2013-04-04" description="1.9.6-0 release">
+            <action dev="kinow" type="update">
+                Maintenance release.
+            </action>
+        </release>
+        <release version="1.9.4-1" date="2013-04-03" description="1.9.4-1 release">
+            <action dev="kinow" type="update">
+                Renamed method addTestCaseSteps to createTestCaseSteps in the the TL API.
+            </action>
+            <action dev="kinow" type="remove">
+                Removed method updateTestCaseSteps that doesn't exist in the PHP XML-RPC API.
+            </action>
+            <action dev="kinow" type="remove">
+                Removed method pushTestCaseSteps that doesn't exist in the PHP XML-RPC API.
+            </action>
+            <action dev="kinow" type="updated">
+                Reformatted parts of the code using Java code style.
+            </action>
+            <action dev="kinow" type="update">
+                Added new parameters to TestCase (platform:Platform and featureId:Integer).
+            </action>
+            <action dev="kinow" type="update" issue="5">
+                Added new parameters to TestCase (platform:Platform and featureId:Integer).
+            </action>
+            <action dev="kinow" type="remove">
+                Removed bugs notes from javadoc headers (inherited from TL project, but deprecated here now).
+            </action>
+            <action dev="kinow" type="add">
+                Added changes.xml to the project.
+            </action>
+            <action dev="kinow" type="add" issue="7">
+                Added new parameter executionTimeStamp to Execution.
+            </action>
+            <action dev="kinow" type="update" issue="9">
+                Fixed bug when selecting multiple suites by ID.
+            </action>
+        </release>
+    </body>
+</document>
