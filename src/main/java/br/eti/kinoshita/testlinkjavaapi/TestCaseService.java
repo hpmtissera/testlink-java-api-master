@@ -291,7 +291,7 @@ class TestCaseService extends BaseService {
                     }
                 }
                 testCaseMap.put(TestLinkResponseParams.ID.toString(), key);
-                testCases[index] = Util.getTestCase(testCaseMap);
+                testCases[index] = Util.getTestCase(testCaseMap);     
                 index += 1;
             }
         } catch (XmlRpcException xmlrpcex) {

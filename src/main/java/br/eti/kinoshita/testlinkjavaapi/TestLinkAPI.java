@@ -821,8 +821,16 @@ public class TestLinkAPI {
             List<Integer> keywordsIds, String keywords, // , separated e.g.: database,performance
             Boolean executed, List<Integer> assignedTo, String[] executeStatus, // , separated e.g.: p,n,f
             ExecutionType executionType, Boolean getStepInfo, TestCaseDetails detail) throws TestLinkAPIException {
-        return this.testCaseService.getTestCasesForTestPlan(testPlanId, testCasesIds, buildId, keywordsIds, keywords,
+        
+        TestCase[] testCases = this.testCaseService.getTestCasesForTestPlan(testPlanId, testCasesIds, buildId, keywordsIds, keywords,
                 executed, assignedTo, executeStatus, executionType, getStepInfo, detail);
+        
+        for (TestCase testCase : testCases) {
+            Execution execution = getLastExecutionResult(testPlanId, testCase.getId(), null);
+            testCase.setExecutionStatus(execution.getStatus());
+        }
+
+        return testCases;
     }
 
     /**

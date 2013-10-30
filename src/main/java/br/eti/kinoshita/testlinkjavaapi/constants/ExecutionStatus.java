@@ -29,7 +29,8 @@ package br.eti.kinoshita.testlinkjavaapi.constants;
  */
 public enum ExecutionStatus {
 
-    NOT_RUN('n'), PASSED('p'), FAILED('f'), BLOCKED('b');
+    NOT_RUN('n'), PASSED('p'), FAILED('f'), BLOCKED('b'), NOT_AVAILABLE('x'),
+    UNKNOWN('u'), TEST_ERROR('e'), ALL('a');
 
     private char value;
 
@@ -55,6 +56,9 @@ public enum ExecutionStatus {
 	case 'b':
 	case 'B':
 	    return BLOCKED;
+	case 'e':
+	case 'E':
+	    return TEST_ERROR;            
 	}
 	return null;
     }
