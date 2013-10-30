@@ -827,7 +827,11 @@ public class TestLinkAPI {
         
         for (TestCase testCase : testCases) {
             Execution execution = getLastExecutionResult(testPlanId, testCase.getId(), null);
-            testCase.setExecutionStatus(execution.getStatus());
+            if (execution != null) {
+                testCase.setExecutionStatus(execution.getStatus());
+            } else {
+                testCase.setExecutionStatus(ExecutionStatus.NOT_RUN);
+            }
         }
 
         return testCases;
