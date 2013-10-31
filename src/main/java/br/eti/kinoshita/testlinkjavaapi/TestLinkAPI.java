@@ -825,6 +825,33 @@ public class TestLinkAPI {
         TestCase[] testCases = this.testCaseService.getTestCasesForTestPlan(testPlanId, testCasesIds, buildId, keywordsIds, keywords,
                 executed, assignedTo, executeStatus, executionType, getStepInfo, detail);
         
+        return testCases;
+    }
+    
+        /**
+     * Retrieves Test Cases for Test Plans with the latest execution status
+     * 
+     * @param testPlanId
+     * @param testCasesIds
+     * @param buildId
+     * @param keywordsIds
+     * @param keywords
+     * @param executed
+     * @param assignedTo
+     * @param executeStatus
+     * @param executionType
+     * @param getStepInfo
+     * @return Array of Test Cases of the Test Plan.
+     * @throws TestLinkAPIException
+     */
+    public TestCase[] getTestCasesForTestPlanWithLatestStatus(Integer testPlanId, List<Integer> testCasesIds, Integer buildId,
+            List<Integer> keywordsIds, String keywords, // , separated e.g.: database,performance
+            Boolean executed, List<Integer> assignedTo, String[] executeStatus, // , separated e.g.: p,n,f
+            ExecutionType executionType, Boolean getStepInfo, TestCaseDetails detail) throws TestLinkAPIException {
+        
+        TestCase[] testCases = this.testCaseService.getTestCasesForTestPlan(testPlanId, testCasesIds, buildId, keywordsIds, keywords,
+                executed, assignedTo, executeStatus, executionType, getStepInfo, detail);
+        
         for (TestCase testCase : testCases) {
             Execution execution = getLastExecutionResult(testPlanId, testCase.getId(), null);
             if (execution != null) {
