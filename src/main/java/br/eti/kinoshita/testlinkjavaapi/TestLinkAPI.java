@@ -401,6 +401,22 @@ public class TestLinkAPI {
         return this.miscService.getLastExecutionResult(testPlanId, testCaseId, testCaseExternalId);
     }
 
+        /**
+     * Retrieves last execution result of a Test Case.
+     * 
+     * @param testPlanId
+     * @param buildId
+     * @param testCaseId
+     * @param testCaseExternalId
+     * @return Last Execution.
+     * @throws TestLinkAPIException
+     */
+    public Execution getLastExecutionResult(Integer testPlanId, Integer buildId, Integer testCaseId, Integer testCaseExternalId
+
+    ) throws TestLinkAPIException {
+        return this.miscService.getLastExecutionResult(testPlanId, buildId, testCaseId, testCaseExternalId);
+    }
+    
     /* XX Test Project operations XX */
 
     /**
@@ -853,7 +869,7 @@ public class TestLinkAPI {
                 executed, assignedTo, executeStatus, executionType, getStepInfo, detail);
         
         for (TestCase testCase : testCases) {
-            Execution execution = getLastExecutionResult(testPlanId, testCase.getId(), null);
+            Execution execution = getLastExecutionResult(testPlanId, buildId, testCase.getId(), null);
             if (execution != null) {
                 testCase.setExecutionStatus(execution.getStatus());
             } else {

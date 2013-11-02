@@ -263,5 +263,40 @@ class MiscService extends BaseService {
         return execution;
 
     }
+    
+    /**
+     * @param testPlanId
+     * @param buildId
+     * @param testCaseId
+     * @param testCaseExternalId
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    protected Execution getLastExecutionResult(Integer testPlanId, Integer buildId, Integer testCaseId, Integer testCaseExternalId)
+            throws TestLinkAPIException {
+
+        Execution execution = null;
+
+        try {
+            Map<String, Object> executionData = new HashMap<String, Object>();
+            executionData.put(TestLinkParams.TEST_PLAN_ID.toString(), testPlanId);
+            executionData.put(TestLinkParams.TEST_CASE_ID.toString(), testCaseId);
+            executionData.put(TestLinkParams.TEST_CASE_EXTERNAL_ID.toString(), testCaseExternalId);
+            executionData.put(TestLinkParams.BUILD_ID.toString(), buildId);
+            Object response = this.executeXmlRpcCall(TestLinkMethods.GET_LAST_EXECUTION_RESULT.toString(),
+                    executionData);
+            Object[] responseArray = Util.castToArray(response);
+            Map<String, Object> responseMap = (Map<String, Object>) responseArray[0];
+            if (responseMap instanceof Map<?, ?> && responseMap.size() > 0) {
+                execution = Util.getExecution(responseMap);
+            }
+
+        } catch (XmlRpcException xmlrpcex) {
+            throw new TestLinkAPIException("Error retrieving last execution result: " + xmlrpcex.getMessage(), xmlrpcex);
+        }
+
+        return execution;
+
+    }
 
 }
