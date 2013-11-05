@@ -266,13 +266,13 @@ class MiscService extends BaseService {
     
     /**
      * @param testPlanId
-     * @param buildId
+     * @param buildName
      * @param testCaseId
      * @param testCaseExternalId
      * @return
      */
     @SuppressWarnings("unchecked")
-    protected Execution getLastExecutionResult(Integer testPlanId, Integer buildId, Integer testCaseId, Integer testCaseExternalId)
+    protected Execution getLastExecutionResult(Integer testPlanId, String buildName, Integer testCaseId, Integer testCaseExternalId)
             throws TestLinkAPIException {
 
         Execution execution = null;
@@ -282,7 +282,7 @@ class MiscService extends BaseService {
             executionData.put(TestLinkParams.TEST_PLAN_ID.toString(), testPlanId);
             executionData.put(TestLinkParams.TEST_CASE_ID.toString(), testCaseId);
             executionData.put(TestLinkParams.TEST_CASE_EXTERNAL_ID.toString(), testCaseExternalId);
-            executionData.put(TestLinkParams.BUILD_ID.toString(), buildId);
+            executionData.put(TestLinkParams.BUILD_NAME.toString(), buildName);
             Object response = this.executeXmlRpcCall(TestLinkMethods.GET_LAST_EXECUTION_RESULT.toString(),
                     executionData);
             Object[] responseArray = Util.castToArray(response);

@@ -405,16 +405,16 @@ public class TestLinkAPI {
      * Retrieves last execution result of a Test Case.
      * 
      * @param testPlanId
-     * @param buildId
+     * @param buildName
      * @param testCaseId
      * @param testCaseExternalId
      * @return Last Execution.
      * @throws TestLinkAPIException
      */
-    public Execution getLastExecutionResult(Integer testPlanId, Integer buildId, Integer testCaseId, Integer testCaseExternalId
+    public Execution getLastExecutionResult(Integer testPlanId, String buildName, Integer testCaseId, Integer testCaseExternalId
 
     ) throws TestLinkAPIException {
-        return this.miscService.getLastExecutionResult(testPlanId, buildId, testCaseId, testCaseExternalId);
+        return this.miscService.getLastExecutionResult(testPlanId, buildName, testCaseId, testCaseExternalId);
     }
     
     /* XX Test Project operations XX */
@@ -850,6 +850,7 @@ public class TestLinkAPI {
      * @param testPlanId
      * @param testCasesIds
      * @param buildId
+     * @param buildName
      * @param keywordsIds
      * @param keywords
      * @param executed
@@ -860,7 +861,7 @@ public class TestLinkAPI {
      * @return Array of Test Cases of the Test Plan.
      * @throws TestLinkAPIException
      */
-    public TestCase[] getTestCasesForTestPlanWithLatestStatus(Integer testPlanId, List<Integer> testCasesIds, Integer buildId,
+    public TestCase[] getTestCasesForTestPlanWithLatestStatus(Integer testPlanId, List<Integer> testCasesIds, Integer buildId, String buildName,
             List<Integer> keywordsIds, String keywords, // , separated e.g.: database,performance
             Boolean executed, List<Integer> assignedTo, String[] executeStatus, // , separated e.g.: p,n,f
             ExecutionType executionType, Boolean getStepInfo, TestCaseDetails detail) throws TestLinkAPIException {
@@ -869,7 +870,7 @@ public class TestLinkAPI {
                 executed, assignedTo, executeStatus, executionType, getStepInfo, detail);
         
         for (TestCase testCase : testCases) {
-            Execution execution = getLastExecutionResult(testPlanId, buildId, testCase.getId(), null);
+            Execution execution = getLastExecutionResult(testPlanId, buildName, testCase.getId(), null);
             if (execution != null) {
                 testCase.setExecutionStatus(execution.getStatus());
             } else {
